@@ -40,18 +40,16 @@ public class SignupController {
     @FXML
     private Button sign_up;
 
-    private final Database database = new Database(); // Assume Database is already initialized
+    private final Database database = new Database(); 
 
     @FXML
     public void initialize() {
-        // Populate the gender combo box with enum values
         genderComboBox.getItems().setAll(Customer.Gender.values());
     }
 
     @FXML
     void handleSignup(ActionEvent event) {
         try {
-            // Collect field data
             String username = usernameField.getText().trim();
             String password = passwordField.getText().trim();
             String address = addressField.getText().trim();
@@ -60,7 +58,6 @@ public class SignupController {
             String[] interests = interestsInput.isEmpty() ? new String[0] : interestsInput.split(",\\s*");
             Customer.Gender gender = genderComboBox.getValue();
 
-            // Validate all fields
             if (username.isEmpty() || password.isEmpty() || address.isEmpty() || dob.isEmpty() || gender == null) {
                 showAlert(AlertType.ERROR, "Validation Error", "All fields are required!");
                 return;
@@ -71,20 +68,14 @@ public class SignupController {
                 return;
             }
 
-            // Create a new Cart instance for the customer
             Cart newCart = new Cart();
 
-            // Default balance for a new customer (modify as needed)
             double balance = 0.0;
 
-            // Create and add the new customer to the database
             Customer newCustomer = new Customer(username, password, dob, address, interests, balance, gender, newCart);
             database.addUser(newCustomer);
 
-            // Show success message
             showAlert(AlertType.INFORMATION, "Signup Successful", "User has been added to the database.");
-
-            // Navigate to the next page
             goToNextPage();
 
         } catch (Exception e) {
@@ -102,11 +93,11 @@ public class SignupController {
 
     private void goToNextPage() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SignupController.class.getResource("Login.fxml")); // Replace with your next page's FXML file
+            FXMLLoader fxmlLoader = new FXMLLoader(SignupController.class.getResource("Login.fxml")); 
             Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = (Stage) usernameField.getScene().getWindow(); // Get the current stage
+            Stage stage = (Stage) usernameField.getScene().getWindow(); 
             stage.setScene(scene);
-            stage.setTitle("Next Page"); // Update the title as needed
+            stage.setTitle("Next Page"); 
             stage.show();
         } catch (IOException e) {
             showAlert(AlertType.ERROR, "Navigation Error", "Unable to load the next page: " + e.getMessage());
