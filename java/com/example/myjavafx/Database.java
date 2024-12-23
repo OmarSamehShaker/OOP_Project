@@ -29,10 +29,9 @@ public class Database implements Serializable{
 
     @SuppressWarnings("unchecked")
     public void loadProducts() {
-        // Check if products is already loaded (not null and not empty)
         if (products != null && !products.isEmpty()) {
             System.out.println("Products are already loaded.");
-            return; // Exit the method without loading again
+            return; 
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PRODUCTS_FILE))) {
