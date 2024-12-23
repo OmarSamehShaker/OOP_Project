@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class CustomerHomePageController {
 
-    // UI Components
     @FXML
     private Label welcomeLabel;
 
@@ -32,13 +31,13 @@ public class CustomerHomePageController {
     private VBox contentArea;
 
     @FXML
-    private TextArea outputArea; // To display results in the UI (similar to MainController)
+    private TextArea outputArea; 
 
     private Customer currentCustomer;
-    private Cart cart = new Cart(); // Cart object for managing the customer's cart
-    private Database database = new Database(); // Database for storing customers and products
+    private Cart cart = new Cart(); 
+    private Database database = new Database(); 
 
-    // Method to initialize customer-specific data
+    
     public void initializeCustomerData(Customer customer) {
         this.currentCustomer = customer;
         welcomeLabel.setText("Welcome, " + customer.getUserName());
@@ -92,7 +91,6 @@ public class CustomerHomePageController {
                 return;
             }
 
-            // Assume paymentMethod is chosen elsewhere (e.g., UI dropdown or input)
             String paymentMethod = "Balance";
             Order order = cart.checkoutCart(paymentMethod);
 
@@ -106,9 +104,6 @@ public class CustomerHomePageController {
         }
     }
 
-    /**
-     * Helper method to show alerts with the given parameters
-     */
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -116,24 +111,17 @@ public class CustomerHomePageController {
         alert.showAndWait();
     }
 
-    /**
-     * Navigate to another page
-     * @param fxmlFile The FXML file for the page
-     * @param pageTitle The title of the page
-     * @param event The action event that triggered the navigation
-     */
+    
     private void navigateToPage(String fxmlFile, String pageTitle, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/myjavafx/" + fxmlFile));
             Scene scene = new Scene(loader.load());
 
-            // If the page is for viewing products, pass the current customer to the ProductsPage controller
             if (fxmlFile.equals("ProductsPage.fxml")) {
                 ProductsPageController controller = loader.getController();
-                controller.initializeCustomerData(currentCustomer); // Pass current customer to the ProductsPage controller
+                controller.initializeCustomerData(currentCustomer); 
             }
 
-            // Get the stage from the button that was clicked
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(pageTitle);
