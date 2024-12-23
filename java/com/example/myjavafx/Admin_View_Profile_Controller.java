@@ -29,26 +29,18 @@ public class Admin_View_Profile_Controller {
     private Database database;
 
     public Admin_View_Profile_Controller() {
-        // Initialize the database
-        this.database = new Database(); // Ensure Database is loaded correctly
+        this.database = new Database(); 
     }
 
-    /**
-     * Populates the labels using the Admin's profile.
-     *
-     * @param admin The current admin whose profile is to be displayed.
-     */
     public void initializeProfile(Admin admin) {
         this.currentAdmin = admin;
 
         if (currentAdmin != null) {
-            // Populate the labels from the Admin fields
             usernameLabel.setText(currentAdmin.getUserName());
             dobLabel.setText(currentAdmin.getDateOfBirth());
             roleLabel.setText(currentAdmin.getRole());
             workingHoursLabel.setText(currentAdmin.getWorkingHours());
         } else {
-            // Handle the case where the Admin object is null
             usernameLabel.setText("N/A");
             dobLabel.setText("N/A");
             roleLabel.setText("N/A");
@@ -56,19 +48,14 @@ public class Admin_View_Profile_Controller {
         }
     }
 
-    /**
-     * Loads the logged-in Admin's profile from the database and initializes the view.
-     */
     public void loadLoggedInAdminProfile(String username) {
-        // Get the admin by username from the database
         Admin admin = (Admin) database.getUserByUsername(username);
 
         if (admin != null) {
-            initializeProfile(admin); // If admin found, display the profile
+            initializeProfile(admin); 
         } else {
-            // Handle the case where the admin is not found
             System.out.println("Admin not found in the database.");
-            initializeProfile(null); // Display N/A if not found
+            initializeProfile(null); 
         }
     }
 
