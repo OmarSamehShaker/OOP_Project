@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myjavafx.AdminPageController">
+    <tabs>
+        <Tab text="Products" closable="false">
+            <VBox spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <ListView fx:id="productList"/>
+                <TextField fx:id="nameField" promptText="Product Name"/>
+                <TextField fx:id="priceField" promptText="Price"/>
+                <Button text="Add Product" onAction="#addProduct"/>
+                <Button text="Remove Selected" onAction="#removeSelectedProduct"/>
+            </VBox>
+        </Tab>
+        <Tab text="Customers" closable="false">
+            <VBox spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="Customers"/>
+                <ListView fx:id="customerList"/>
+                <TextField fx:id="customerInfoField" promptText="Customer Info"/>
+                <Button text="Update Info" onAction="#updateCustomerInfo"/>
+            </VBox>
+        </Tab>
+        <Tab text="Orders" closable="false">
+            <VBox spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="Orders"/>
+                <ListView fx:id="orderList"/>
+                <TextField fx:id="statusField" promptText="New Status"/>
+                <Button text="Update Status" onAction="#updateOrderStatus"/>
+            </VBox>
+        </Tab>
+        <Tab text="Roles" closable="false">
+            <VBox spacing="10" alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="Roles"/>
+                <ListView fx:id="roleList"/>
+                <TextField fx:id="roleField" promptText="New Role"/>
+                <Button text="Update Role" onAction="#updateRole"/>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>

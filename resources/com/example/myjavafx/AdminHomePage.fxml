@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="600.0" styleClass="blue_panel" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myjavafx.AdminHomePageController">
+   <children>
+      <TextField fx:id="text_field" layoutX="154.0" layoutY="38.0" prefHeight="61.0" prefWidth="292.0" styleClass="text" stylesheets="@Styles.css" text="Admin Control Center">
+         <font>
+            <Font name="Arial" size="24.0" />
+         </font>
+      </TextField>
+
+      <GridPane alignment="CENTER_LEFT" layoutX="45.0" layoutY="100.0" prefHeight="382.0" prefWidth="502.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+
+         <children>
+            <Button fx:id="view_profile" mnemonicParsing="false" onAction="#handleViewProfile" text="View Profile" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="update_profile" mnemonicParsing="false" onAction="#handleUpdateProfile" text="Update Profile" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="view_customers" mnemonicParsing="false" onAction="#handleViewCustomers" text="View Customers" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="add_product" mnemonicParsing="false" onAction="#handleAddProduct" text="Add Product" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="remove_product" mnemonicParsing="false" onAction="#handleRemoveProduct" text="Remove Product" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="view_products" mnemonicParsing="false" onAction="#handleViewProducts" text="View Products" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="logout_button" mnemonicParsing="false" onAction="#handleLogout" text="Logout" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
+            <Button fx:id="exit_button" mnemonicParsing="false" onAction="#handleExit" text="Exit" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

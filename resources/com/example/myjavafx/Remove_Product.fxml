@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="blue_panel" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.myjavafx.RemoveProductController">
+    <children>
+        <!-- ComboBox for selecting a product to remove -->
+        <HBox alignment="CENTER_LEFT" layoutX="100.0" layoutY="100.0" prefHeight="88.0" prefWidth="400.0">
+            <children>
+                <ComboBox fx:id="productComboBox" prefHeight="64.0" prefWidth="410.0" promptText="Select Product" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+
+        <!-- Button to remove the selected product -->
+        <Button fx:id="removeButton" layoutX="173.0" layoutY="200.0" onAction="#handleRemoveProduct" prefHeight="74.0" prefWidth="229.0" text="Remove Product" />
+
+        <!-- Button to go back -->
+        <Button fx:id="return_button" layoutX="421.0" layoutY="324.0" onAction="#handleReturn" prefHeight="50.0" prefWidth="136.0" text="Return" />
+    </children>
+</AnchorPane>

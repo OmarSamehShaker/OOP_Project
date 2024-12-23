@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.myjavafx.Customer_ProductPageController">
+    <GridPane fx:id="grid" alignment="CENTER" hgap="10" vgap="10" padding="20">
+        <!-- The products will be dynamically added in the controller -->
+    </GridPane>
+</StackPane>
