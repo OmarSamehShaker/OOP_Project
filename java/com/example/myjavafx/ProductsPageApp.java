@@ -12,12 +12,9 @@ public class ProductsPageApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load the Products Page FXML
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductsPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
-
-            // Set up the primary stage
             primaryStage.setTitle("Products Page");
             primaryStage.setScene(scene);
             primaryStage.show();
