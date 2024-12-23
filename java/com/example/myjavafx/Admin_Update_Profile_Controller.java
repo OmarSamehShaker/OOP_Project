@@ -35,7 +35,7 @@ public class Admin_Update_Profile_Controller {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         if (currentAdmin != null) {
-            // Populate fields with admin's current data
+            
             usernameField.setText(currentAdmin.getUserName());
             dobField.setText(currentAdmin.getDateOfBirth());
             roleField.setText(currentAdmin.getRole());
@@ -56,19 +56,15 @@ public class Admin_Update_Profile_Controller {
         String workingHours = workingHoursField.getText();
 
         if (currentAdmin != null) {
-            // Update admin profile data
+            
             currentAdmin.setUserName(username);
             currentAdmin.setDateOfBirth(dob);
             currentAdmin.setRole(role);
             currentAdmin.setWorkingHours(workingHours);
-
-            // Save changes to the database
+            
             database.saveUsers();
-
-            // Display success message
             showAlert(Alert.AlertType.INFORMATION, "Profile Updated", "Admin profile updated successfully.");
         } else {
-            // Display error message if admin is not set
             showAlert(Alert.AlertType.ERROR, "Error", "Unable to update profile. Admin data is missing.");
         }
     }
@@ -76,7 +72,7 @@ public class Admin_Update_Profile_Controller {
     @FXML
     private void handleCancelButtonAction(ActionEvent event) {
         if (currentAdmin != null) {
-            // Revert changes to original admin data
+    
             usernameField.setText(currentAdmin.getUserName());
             dobField.setText(currentAdmin.getDateOfBirth());
             roleField.setText(currentAdmin.getRole());
@@ -107,7 +103,6 @@ public class Admin_Update_Profile_Controller {
                 controller.initializeAdminData(currentAdmin);
             }
 
-            // Dynamically retrieve the stage
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(pageTitle);
