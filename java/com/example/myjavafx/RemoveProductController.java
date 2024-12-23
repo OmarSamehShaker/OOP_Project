@@ -13,7 +13,7 @@ import java.util.List;
 public class RemoveProductController {
     Database db = new Database();
     @FXML
-    private ComboBox<Products> productComboBox;  // ComboBox for selecting a product to remove
+    private ComboBox<Products> productComboBox;  
 
     @FXML
     private Button removeButton;
@@ -21,22 +21,17 @@ public class RemoveProductController {
     @FXML
     private Button return_button;
 
-    // Initialize method to populate the ComboBox with products
     @FXML
     public void initialize() {
         loadProducts();
     }
 
-    // Load products into the ComboBox
     private void loadProducts() {
-        List<Products> productsList = db.getProducts();  // Fetch products from database
-
-        // Clear any existing items and add products from the database
+        List<Products> productsList = db.getProducts(); 
         productComboBox.getItems().clear();
         productComboBox.getItems().addAll(productsList);
     }
 
-    // Handle remove product action
     @FXML
     void handleRemoveProduct(ActionEvent event) {
         Products selectedProduct = productComboBox.getValue();
@@ -46,22 +41,16 @@ public class RemoveProductController {
             return;
         }
 
-        // Perform the database operation to remove the selected product by ID
+        boolean removed = db.removeProduct(selectedProduct.getId()); 
 
-
-        // Remove the product by passing its ID
-        boolean removed = db.removeProduct(selectedProduct.getId());  // Pass ID of selected product
-
-        // Provide feedback to the user
         if (removed) {
             System.out.println("Product removed successfully.");
-            loadProducts();  // Reload the ComboBox after removal
+            loadProducts(); 
         } else {
             System.out.println("Failed to remove the product.");
         }
     }
 
-    // Handle return action (navigate back to the Admin Home page)
     @FXML
     void handleReturn(ActionEvent event) {
         try {
