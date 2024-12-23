@@ -25,9 +25,8 @@ public class LoginController {
 
     @FXML
     public void initialize() {
-        // Populate ComboBox with options (Admin, Customer)
         combo_box.getItems().addAll("Admin", "Customer");
-        combo_box.getSelectionModel().selectFirst(); // Default selection is "Admin"
+        combo_box.getSelectionModel().selectFirst(); 
     }
 
     @FXML
@@ -36,13 +35,11 @@ public class LoginController {
         String enteredPassword = password.getText().trim();
         String selectedUserType = combo_box.getValue();
 
-        // Validate input fields
         if (enteredUsername.isEmpty() || enteredPassword.isEmpty() || selectedUserType == null) {
             showAlert(Alert.AlertType.WARNING, "Input Error", "Please fill in all fields.");
             return;
         }
 
-        // Handle login logic
         if ("Admin".equals(selectedUserType)) {
             handleAdminLogin(enteredUsername, enteredPassword);
         } else if ("Customer".equals(selectedUserType)) {
@@ -53,25 +50,21 @@ public class LoginController {
     }
 
     private void handleAdminLogin(String username, String password) {
-        Admin admin = (Admin) database.getUserByUsername(username); // Fetch admin from database
+        Admin admin = (Admin) database.getUserByUsername(username); 
         if (admin != null && admin.getPassword().equals(password)) {
-            // Admin login successful
             System.out.println("Admin login successful!");
             navigateToPage("/com/example/myjavafx/AdminHomePage.fxml", "Admin Home Page", admin);
         } else {
-            // Admin login failed
             showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid admin credentials.");
         }
     }
 
     private void handleCustomerLogin(String username, String password) {
-        Customer customer = (Customer)database.getUserByUsername(username); // Fetch customer from database
+        Customer customer = (Customer)database.getUserByUsername(username); 
         if (customer != null && customer.getPassword().equals(password)) {
-            // Customer login successful
             System.out.println("Customer login successful!");
             navigateToPage("CustomerHomePage.fxml", "Customer Home Page",customer);
         } else {
-            // Customer login failed
             showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid customer credentials.");
         }
     }
@@ -81,7 +74,6 @@ public class LoginController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
             Scene scene = new Scene(fxmlLoader.load());
 
-            // Pass the user object to the appropriate controller
             if (fxmlFile.equals("AdminHomePage.fxml")) {
                 AdminHomePageController controller = fxmlLoader.getController();
                 controller.initializeAdminData((Admin) user);
