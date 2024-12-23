@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class AdminPageController {
 
-    // FXML references
     @FXML private ListView<Product> productList;
     @FXML private TextField nameField;
     @FXML private TextField priceField;
@@ -23,7 +22,6 @@ public class AdminPageController {
     @FXML private ListView<String> roleList;
     @FXML private TextField roleField;
 
-    // Observable lists for better synchronization with UI
     private final ObservableList<Product> products = FXCollections.observableArrayList();
     private final ObservableList<String> customers = FXCollections.observableArrayList();
     private final ObservableList<Order> orders = FXCollections.observableArrayList();
@@ -33,13 +31,11 @@ public class AdminPageController {
 
     @FXML
     public void initialize() {
-        // Set observable lists to ListView controls
         productList.setItems(products);
         customerList.setItems(customers);
         orderList.setItems(orders);
         roleList.setItems(roles);
-
-        // Example data (optional, for testing)
+        
         products.add(new Product("Example Product", 10.0));
         customers.add("John Doe");
         customerInfoMap.put("John Doe", "Contact: johndoe@example.com");
@@ -48,7 +44,6 @@ public class AdminPageController {
         rolesMap.put("Admin", "Full Access");
     }
 
-    // Product Tab Actions
     @FXML
     private void addProduct() {
         String name = nameField.getText();
@@ -78,7 +73,6 @@ public class AdminPageController {
         }
     }
 
-    // Customer Tab Actions
     @FXML
     private void updateCustomerInfo() {
         String selectedCustomer = customerList.getSelectionModel().getSelectedItem();
@@ -90,22 +84,20 @@ public class AdminPageController {
             showError("Update Error", "Select a customer and enter valid info.");
         }
     }
-
-    // Order Tab Actions
+    
     @FXML
     private void updateOrderStatus() {
         Order selectedOrder = orderList.getSelectionModel().getSelectedItem();
         String status = statusField.getText();
         if (selectedOrder != null && !status.isEmpty()) {
             selectedOrder.setStatus(status);
-            orderList.refresh(); // Refresh to show updated status
+            orderList.refresh(); 
             statusField.clear();
         } else {
             showError("Update Error", "Select an order and enter a valid status.");
         }
     }
 
-    // Role Tab Actions
     @FXML
     private void updateRole() {
         String selectedUser = roleList.getSelectionModel().getSelectedItem();
@@ -118,7 +110,6 @@ public class AdminPageController {
         }
     }
 
-    // Helper Method: Show Error Dialog
     private void showError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -127,7 +118,6 @@ public class AdminPageController {
         alert.showAndWait();
     }
 
-    // Helper Classes
     static class Product {
         private final String name;
         private final double price;
