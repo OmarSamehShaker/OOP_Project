@@ -20,23 +20,20 @@ public class ProductsPageController {
     private Database db = new Database();
     private ArrayList<Products> products = db.getProducts();
 
-    // UI components
     @FXML
-    private Button returnButton; // Button to return to Admin home
+    private Button returnButton; 
     @FXML
-    private StackPane rootPane; // The root container (StackPane)
+    private StackPane rootPane; 
     @FXML
-    private VBox vboxContainer; // VBox containing the GridPane and Button
+    private VBox vboxContainer; 
     @FXML
-    private GridPane productGrid; // GridPane for displaying products
+    private GridPane productGrid; 
     @FXML
-    private Label customerNameLabel; // Label to display customer name
+    private Label customerNameLabel;
 
-    // Flag to ensure products are only loaded once
     private boolean productsLoaded = false;
-    private Customer currentCustomer; // Customer object to hold the current customer
+    private Customer currentCustomer; 
 
-    // Method to initialize customer data
     public void initializeCustomerData(Customer customer) {
         this.currentCustomer = customer;
         customerNameLabel.setText("Welcome, " + customer.getUserName());
@@ -44,46 +41,35 @@ public class ProductsPageController {
 
     @FXML
     private void initialize() {
-        // Prevent products from being loaded multiple times
         if (productsLoaded) {
-            return;  // Skip loading products if already loaded
+            return;  
         }
-
-        // Initialize the GridPane
-        productGrid.getChildren().clear(); // Clear any previous content
+        
+        productGrid.getChildren().clear(); 
 
         int row = 0;
         for (Products product : products) {
-            // Create a VBox for each product (product card)
             VBox productCard = new VBox();
             productCard.setSpacing(10);
             productCard.setStyle("-fx-border-color: gray; -fx-border-radius: 5; -fx-padding: 10;");
 
-            // Create and style the product name label
             Label nameLabel = new Label("Product: " + product.getName());
             nameLabel.setFont(new Font("Arial", 16));
             nameLabel.setTextFill(Color.BLACK);
 
-            // Create and style the price label
             Label priceLabel = new Label("Price: $" + product.getPrice());
             priceLabel.setFont(new Font("Arial", 14));
             priceLabel.setTextFill(Color.BLACK);
 
-            // Add the labels to the VBox (product card)
             productCard.getChildren().addAll(nameLabel, priceLabel);
-
-            // Add the product card to the GridPane at the next row
             productGrid.add(productCard, 0, row++);
         }
-
-        // Set the flag to true after loading products
         productsLoaded = true;
     }
 
     @FXML
     void handleReturn(ActionEvent event) {
         try {
-            // Navigate back to Admin Home Page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHomePage.fxml"));
             Stage stage = (Stage) returnButton.getScene().getWindow();
             stage.setScene(new Scene(loader.load()));
