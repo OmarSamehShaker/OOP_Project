@@ -21,7 +21,7 @@ public class Admin_Customer_Screen_Controller {
     @FXML
     private Button customerSignupButton;
 
-    // Helper method for navigation
+
     private void navigateToPage(String fxmlFile, String pageTitle, Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -34,7 +34,6 @@ public class Admin_Customer_Screen_Controller {
         }
     }
 
-    // Show alert for errors or information
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
