@@ -19,42 +19,32 @@ public class AdminLoginController {
     @FXML
     private PasswordField password;
 
-    /**
-     * Handles the admin login process.
-     */
+    
     @FXML
     private void handleLogin() {
         String enteredUsername = username.getText().trim();
         String enteredPassword = password.getText().trim();
 
-        // Validate input fields
         if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Input Error", "Please fill in all fields.");
             return;
         }
 
-        // Authenticate admin credentials
         Admin admin = (Admin) database.getUserByUsername(enteredUsername);
         if (admin != null && admin.getPassword().equals(enteredPassword)) {
-            // Admin login successful
             System.out.println("Admin login successful!");
-            AdminSession.setCurrentAdmin(admin); // Set the logged-in admin as the current admin
+            AdminSession.setCurrentAdmin(admin); 
             navigateToAdminHomePage(admin);
         } else {
-            // Admin login failed
             showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid admin credentials.");
         }
     }
 
-    /**
-     * Navigates to the Admin Home Page and passes the logged-in admin's details.
-     */
     private void navigateToAdminHomePage(Admin admin) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminHomePage.fxml"));
             Scene scene = new Scene(loader.load());
 
-            // Pass the admin object to the AdminHomeController
             AdminHomePageController adminHomeController = loader.getController();
             adminHomeController.initializeAdminData(admin);
 
@@ -67,9 +57,6 @@ public class AdminLoginController {
         }
     }
 
-    /**
-     * Shows an alert dialog with the specified type, title, and content.
-     */
     private void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
