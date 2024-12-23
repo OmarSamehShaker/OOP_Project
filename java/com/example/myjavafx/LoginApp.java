@@ -15,11 +15,9 @@ public class LoginApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // Load the login FXML file for the login page
         FXMLLoader fxmlLoader = new FXMLLoader(LoginApp.class.getResource("Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 300); // Adjust size as needed
+        Scene scene = new Scene(fxmlLoader.load(), 400, 300); 
 
-        // Set up the stage (login window)
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
         primaryStage.show();
