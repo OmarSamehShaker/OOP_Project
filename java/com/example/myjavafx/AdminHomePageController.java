@@ -29,30 +29,23 @@ public class AdminHomePageController {
     @FXML
     private Button exit_button;
 
-    // Database instance (ensure it is initialized properly)
-
-
-    // Admin instance (current logged-in admin)
     private Admin currentAdmin;
 
-    // Initialize current admin (called after login or when setting up the scene)
+    
     public void initializeAdminData(Admin admin) {
         this.currentAdmin = admin;
 
-        // Use the admin object to populate the page
         if (currentAdmin != null) {
             System.out.println("Welcome, " + currentAdmin.getUserName());
         }
     }
-    /**
-     * Navigate to a specific page based on the button clicked.
-     */
+
+    
     private void navigateToPage(String fxmlFile, String pageTitle, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/myjavafx/" + fxmlFile));
             Scene scene = new Scene(loader.load());
 
-            // Optionally, pass the currentAdmin to the controller for profile-related pages
             if (fxmlFile.equals("Admin_View_Profile.fxml")) {
                 Admin_View_Profile_Controller controller = loader.getController();
                 controller.initializeProfile(currentAdmin);
@@ -60,8 +53,7 @@ public class AdminHomePageController {
                 Admin_Update_Profile_Controller controller = loader.getController();
                 controller.setCurrentAdmin(currentAdmin, database);
             }
-
-            // Get the stage from the button that was clicked
+            
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(pageTitle);
