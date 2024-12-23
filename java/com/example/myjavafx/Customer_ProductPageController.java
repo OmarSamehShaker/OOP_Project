@@ -13,20 +13,18 @@ import javafx.geometry.Pos;
 public class Customer_ProductPageController {
 
     @FXML
-    private GridPane grid; // Reference to the GridPane in the FXML
+    private GridPane grid; 
 
-    private Database database;  // Database object to manage products and users
-    private Cart cart;  // Cart object to manage user cart functionality
+    private Database database;
+    private Cart cart;  
 
     public void initialize() {
-        database = new Database();  // Initialize database
-        cart = new Cart();  // Initialize the cart
-
-        // Load products from the database
+        database = new Database();  
+        cart = new Cart();  
+        
         database.loadProducts();
-
-        // Add products to the grid
-        int numColumns = 3; // Number of columns
+        int numColumns = 3; 
+        
         for (int i = 0; i < database.getProducts().size(); i++) {
             Products product = database.getProducts().get(i);
 
@@ -36,7 +34,6 @@ public class Customer_ProductPageController {
             Button detailsButton = new Button("Details");
             Button addToCartButton = new Button("Add to Cart");
 
-            // Add an action handler for the "Add to Cart" button
             addToCartButton.setOnAction(e -> {
                 try {
                     cart.addProductToCart(product);
@@ -45,8 +42,7 @@ public class Customer_ProductPageController {
                     showAlert(Alert.AlertType.ERROR, "Error", ex.getMessage());
                 }
             });
-
-            // Add an action handler for the "Details" button
+            
             detailsButton.setOnAction(e -> {
                 showAlert(Alert.AlertType.INFORMATION, "Product Details",
                         "Name: " + product.getName() +
@@ -54,18 +50,15 @@ public class Customer_ProductPageController {
                                 "\nPrice: $" + product.getPrice());
             });
 
-            // Create a VBox for each product
             VBox productBox = new VBox(10);
             productBox.getChildren().addAll(nameLabel, categoryLabel, priceLabel, detailsButton, addToCartButton);
             productBox.setAlignment(Pos.CENTER);
             productBox.setStyle("-fx-border-color: gray; -fx-border-width: 1; -fx-padding: 10;");
 
-            // Allow productBox to grow with the grid cell
             GridPane.setHgrow(productBox, Priority.ALWAYS);
             GridPane.setVgrow(productBox, Priority.ALWAYS);
-
-            // Add productBox to the grid
-            grid.add(productBox, i % numColumns, i / numColumns); // Arrange in columns and rows
+            
+            grid.add(productBox, i % numColumns, i / numColumns);
         }
     }
 
